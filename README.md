@@ -2,8 +2,8 @@
 
 ## First Steps
 
-```diff
-+ (npm init -y)
+```
++ npm init -y
 ```
 
 npm i --save-dev prisma typescript ts-node @types/node nodemon
