@@ -2,7 +2,7 @@
 
 ## First Steps
 
-```
+```diff
 + npm init -y
 ```
 
