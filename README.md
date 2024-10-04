@@ -6,10 +6,13 @@
 npm init -y
 ```
 
-$${\color{green}npm\ i\ --save-dev\ prisma\ typescript\ ts-node\ @types/node\ nodemon}$$
+```
+npm i --save-dev prisma typescript ts-node @types/node nodemon
+```
 
 ### make new file named tsconfig.json with this inside:
 
+```
 {
 "compilerOptions": {
 "sourceMap": true,
@@ -28,7 +31,10 @@ $${\color{green}npm\ i\ --save-dev\ prisma\ typescript\ ts-node\ @types/node\ no
 // "skipLibCheck": true /_ Skip type checking all .d.ts files. _/
 }
 }
+```
 
 ### Initialize prisma and tell it what DB you are using (this give you a prisma file and a .env and .gitignore)
 
+```
 npx prisma init --datasource-provider postgresql
+```
