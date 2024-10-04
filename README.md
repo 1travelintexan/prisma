@@ -2,9 +2,9 @@
 
 ## First Steps
 
-### npm init -y
+- ![#c5f015] npm init -y
 
-### npm i --save-dev prisma typescript ts-node @types/node nodemon
+npm i --save-dev prisma typescript ts-node @types/node nodemon
 
 ### make new file named tsconfig.json with this inside:
 
@@ -29,4 +29,4 @@
 
 ### Initialize prisma and tell it what DB you are using (this give you a prisma file and a .env and .gitignore)
 
-### npx prisma init --datasource-provider postgresql
+npx prisma init --datasource-provider postgresql
