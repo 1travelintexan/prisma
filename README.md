@@ -1,2 +1,3 @@
-# prisma
-web dev simplified prisma video
+# prima
+
+## First Steps
