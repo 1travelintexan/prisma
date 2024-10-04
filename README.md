@@ -2,7 +2,9 @@
 
 ## First Steps
 
-- ![#c5f015] (npm init -y)`#c5f015`
+```diff
++ (npm init -y)
+```
 
 npm i --save-dev prisma typescript ts-node @types/node nodemon
 
