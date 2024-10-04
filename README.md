@@ -2,7 +2,7 @@
 
 ## First Steps
 
-$${\color{green}npm init -y}$$ \
+$${\color{green}npm init -y}$$
 
 $${\color{green}npm i --save-dev prisma typescript ts-node @types/node nodemon}$$
 
