@@ -2,12 +2,8 @@
 
 ## First Steps
 
-```diff
-+ npm init -y
-```
-
-$${\color{green}Green}$$
-npm i --save-dev prisma typescript ts-node @types/node nodemon
+$${\color{green}npm init -y}$$
+$${\color{green}npm i --save-dev prisma typescript ts-node @types/node nodemon}$$
 
 ### make new file named tsconfig.json with this inside:
 
