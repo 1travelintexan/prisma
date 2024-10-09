@@ -14,9 +14,31 @@ datasource db {
 }
 //model is a keyword and models should start with capital
 //models are separated without a comma and without : and have many choices
+//names always start with capital
 // Int, String, 
-//@id 
 model User{
+  //each line has 4 parts
+  //name, type (both required), modifier(optional), attributes(start with @ and optional)
 id Int @id @default(autoincrement())
-name String
+name String 
+email String @unique
+age Int?
+isAdmin Boolean?
+ largeNumber BigInt?
+// //postgresql supports json type but sql lite does not
+prefrences Json? 
+//big data that is file data but not common
+blob Bytes?
+//these are for types that are not supported by prisma
+//  somethingUnsupported Unsupported({""}) 
+ posts Post[]
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  rating Float
+  accurateDecimalNumber Decimal
+  updatedAt DateTime
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int
 }
