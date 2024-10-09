@@ -51,7 +51,11 @@ npx prisma format
 
 ### It will create a migrations file when you run it and that file will have the sql syntax to create the table with the new schema
 
-### It also creates a new Prisma client but you will need to install the prisma client library with ... npm i @prisma/client
+### It also creates a new Prisma client but you will need to install the prisma client library with ...
+
+```
+npm i @prisma/client
+```
 
 ### After you generate a client then you can generate it with npx prisma generate
 
