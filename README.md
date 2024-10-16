@@ -53,6 +53,8 @@ npx prisma format
 
 ### It also creates a new Prisma client but you will need to install the prisma client library with this command.
 
+### You install the client after you migrate the schema
+
 ```
 npm i @prisma/client
 ```
@@ -63,7 +65,7 @@ npm i @prisma/client
 npx prisma generate
 ```
 
-### If you change the schema you can migrate the changes to the DB with
+### If you change the schema you can migrate the changes to the DB with (this migrates the changes with the name of init)
 
 ```
 npx prisma migrate dev --name init

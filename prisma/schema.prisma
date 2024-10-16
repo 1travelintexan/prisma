@@ -12,33 +12,72 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 //model is a keyword and models should start with capital
 //models are separated without a comma and without : and have many choices
 //names always start with capital
-// Int, String, 
-model User{
+// Int, String, Boolean, BigInt, Json, Bytes
+model User {
   //each line has 4 parts
-  //name, type (both required), modifier(optional), attributes(start with @ and optional)
-id Int @id @default(autoincrement())
-name String 
-email String @unique
-age Int?
-isAdmin Boolean?
- largeNumber BigInt?
-// //postgresql supports json type but sql lite does not
-prefrences Json? 
-//big data that is file data but not common
-blob Bytes?
-//these are for types that are not supported by prisma
-//  somethingUnsupported Unsupported({""}) 
- posts Post[]
+  //name, type (both required), modifier(optional), attributes(start with @ and optional ?)
+  //autoincrement() will start at 1 and increment each time something is created
+  // id          Int      @id @default(autoincrement())
+  id             String   @id @default(uuid())
+  name           String
+  email          String   @unique
+  // ? means this property is optional 
+  age            Int?
+  isAdmin        Boolean?
+  largeNumber    BigInt?
+  // //postgresql supports json type but sql lite does not
+  prefrences     Json?
+  //big data that is file data but not common
+  blob           Bytes?
+  role           Role     @default(BASIC)
+  //these are for types that are not supported by prisma
+  //  somethingUnsupported Unsupported({""}) 
+  //posts Post[] is saying that there can be many posts
+  // posts       Post[]
+  //***********have two relations pointing to the same model
+  //one for the favorite posts and the other for written posts
+  writtenPosts   Post[]   @relation("writtenPosts")
+  favoritedPosts Post[]   @relation("favoritedPosts")
+
+  //block level attribute has two @ symbols and refers to the whole model
+  //this example make the User have a unique age and name combined (both) You can have a same name and same age but not the same together
+  @@unique([age, name])
+  //this adds an index for the email field (helps with sorting and performance)
+  @@index([email])
 }
 
 model Post {
-  id Int @id @default(autoincrement())
-  rating Float
-  accurateDecimalNumber Decimal
-  updatedAt DateTime
-  author User @relation(fields: [authorId], references: [id])
-  authorId Int
+  id            String   @id @default(uuid())
+  title         String
+  //float is decimal value
+  rating        Float
+  //similar to float, the difference is Decimal is the more accurate but Float is more common
+  DecimalNumber Decimal?
+  // DateTime is date format with the created at being default of the current date time
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime
+  //author will refrence the User model and the relation on the Post model will be in the fields : []
+  //the refrences: [] is saying what field from the User model is the link
+  //finally after the author feild, you need to create a specific field that matchs the fields: [] and the same type as the refrences: []
+  //this is a one to many example, one user can have many posts
+  //*****To relate to two different properties we need two relations and the first property in the @relation is the label referring to the name in the User
+  //*****After you add the label to the @relation here, then you need to add it to the User on that property too
+  author        User     @relation("writtenPosts", fields: [authorId], references: [id])
+  authorId      String
+  favoritedBy   User?    @relation("favoritedPosts", fields: [favoritedById], references: [id])
+  favoritedById String?
+
+  //this creates a composite id (two different attributes to form one unique id)
+  // @@id([title, authorId])
+}
+
+//this is an enum, not model, it is used in the User model as the role
+enum Role {
+  BASIC
+  ADMIN
+  CEO
 }
